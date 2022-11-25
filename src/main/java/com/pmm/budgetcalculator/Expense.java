@@ -1,17 +1,23 @@
 package com.pmm.budgetcalculator;
 
-import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Expense {
     private String expenseName;
     private String expenseDescription;
     private LocalDateTime expenseTime;
-    private BigDecimal expenseAmount;
+    private double expenseAmount; //or BigDecimal
     private String expensePlace;
     private long expenseId;
+
+    public Expense(String expenseName, String expenseDescription, LocalDateTime expenseTime, double expenseAmount, String expensePlace, long expenseId) {
+        this.expenseName = expenseName;
+        this.expenseDescription = expenseDescription;
+        this.expenseTime = expenseTime;
+        this.expenseAmount = expenseAmount;
+        this.expensePlace = expensePlace;
+        this.expenseId = expenseId;
+    }
 
     public String getExpenseName() {
         return expenseName;
@@ -29,11 +35,11 @@ public class Expense {
         this.expenseDescription = expenseDescription;
     }
 
-    public BigDecimal getExpenseAmount() {
+    public double getExpenseAmount() {
         return expenseAmount;
     }
 
-    public void setExpenseAmount(BigDecimal expenseAmount) {
+    public void setExpenseAmount(double expenseAmount) {
         this.expenseAmount = expenseAmount;
     }
 
