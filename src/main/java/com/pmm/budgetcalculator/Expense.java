@@ -10,6 +10,11 @@ public class Expense {
     private String expensePlace;
     private long expenseId;
 
+    public Expense() {
+        this.expenseTime = LocalDateTime.now();
+    }
+
+
     public Expense(String expenseName, String expenseDescription, LocalDateTime expenseTime, double expenseAmount, String expensePlace, long expenseId) {
         this.expenseName = expenseName;
         this.expenseDescription = expenseDescription;

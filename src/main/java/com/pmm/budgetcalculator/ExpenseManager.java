@@ -20,6 +20,9 @@ public class ExpenseManager {
     public List<Expense> getExpenseList() {
         return expenseList;
     }
+    public boolean addExpense(Expense expense) {
+        return expenseList.add(expense);
+    }
 
     public void setExpenseList(List<Expense> expenseList) {
         this.expenseList = expenseList;
