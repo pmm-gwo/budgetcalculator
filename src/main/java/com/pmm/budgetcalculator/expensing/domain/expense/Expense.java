@@ -1,4 +1,4 @@
-package com.pmm.budgetcalculator;
+package com.pmm.budgetcalculator.expensing.domain.expense;
 
 import java.time.LocalDateTime;
 

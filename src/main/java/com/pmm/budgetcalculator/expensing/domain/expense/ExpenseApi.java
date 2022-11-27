@@ -1,10 +1,7 @@
-package com.pmm.budgetcalculator;
+package com.pmm.budgetcalculator.expensing.domain.expense;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +14,11 @@ public class ExpenseApi {
     @Autowired
     public ExpenseApi(ExpenseManager expenseManager) {
         this.expenseManager = expenseManager;
+    }
+
+    @GetMapping("/sayHello")
+    public String main(@RequestParam String name) {
+        return "Hello" + name;
     }
 
     @GetMapping("/getExpense")
