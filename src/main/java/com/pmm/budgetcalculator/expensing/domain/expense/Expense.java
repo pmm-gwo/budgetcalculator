@@ -1,8 +1,10 @@
 package com.pmm.budgetcalculator.expensing.domain.expense;
 
+import com.pmm.budgetcalculator.foundation.BaseEntity;
+
 import java.time.LocalDateTime;
 
-public class Expense {
+public class Expense extends BaseEntity {
     private String expenseName;
     private String expenseDescription;
     private LocalDateTime expenseTime;
