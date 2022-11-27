@@ -9,11 +9,11 @@ import java.util.List;
 public class ExpenseApi {
 
 
-    private ExpenseManager expenseManager;
+    private ExpenseService expenseService;
 
     @Autowired
-    public ExpenseApi(ExpenseManager expenseManager) {
-        this.expenseManager = expenseManager;
+    public ExpenseApi(ExpenseService expenseService) {
+        this.expenseService = expenseService;
     }
 
     @GetMapping("/sayHello")
@@ -23,11 +23,11 @@ public class ExpenseApi {
 
     @GetMapping("/getExpense")
     public List<Expense> getExpense() {
-        return expenseManager.getExpenseList();
+        return expenseService.getExpenseList();
     }
 
     @PostMapping("/addExpense")
     public boolean Expense(@RequestBody Expense expense) {
-        return expenseManager.addExpense(expense);
+        return expenseService.addExpense(expense);
     }
 }

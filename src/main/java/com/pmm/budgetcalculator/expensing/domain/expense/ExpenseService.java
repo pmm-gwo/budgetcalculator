@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ExpenseManager {
+public class ExpenseService {
 
     private List<Expense> expenseList;
 
-    public ExpenseManager() {
+    public ExpenseService() {
         this.expenseList = new ArrayList<>();
         expenseList.add(new Expense("zakupy spozywcze", null, LocalDateTime.now(), 125.99, "Lidl", 1));
         expenseList.add(new Expense("paliwo", null, LocalDateTime.now(), 250, "Orlen", 2));
