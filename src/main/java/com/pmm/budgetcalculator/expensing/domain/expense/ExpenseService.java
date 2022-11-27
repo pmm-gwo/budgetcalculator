@@ -1,33 +1,27 @@
 package com.pmm.budgetcalculator.expensing.domain.expense;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ExpenseService {
+@RequiredArgsConstructor
+public class ExpenseService{
 
-    private List<Expense> expenseList;
+    private final ExpenseRepository expenseRepository;
 
-    public ExpenseService() {
-        this.expenseList = new ArrayList<>();
-        expenseList.add(new Expense("zakupy spozywcze", null, LocalDateTime.now(), 125.99, "Lidl", 1));
-        expenseList.add(new Expense("paliwo", null, LocalDateTime.now(), 250, "Orlen", 2));
+    public List<Expense> getAllExpenses() {
+        return expenseRepository.findAll();
+
+    }
+    public Expense createExpense(Expense expense) {
+        return expenseRepository.save(expense);
+    }
     }
 
-    public List<Expense> getExpenseList() {
-        return expenseList;
-    }
-    public boolean addExpense(Expense expense) {
-        return expenseList.add(expense);
-    }
 
-    public void setExpenseList(List<Expense> expenseList) {
-        this.expenseList = expenseList;
-    }
-}
+
 
 
 
