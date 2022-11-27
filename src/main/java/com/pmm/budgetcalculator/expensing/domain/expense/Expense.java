@@ -2,15 +2,20 @@ package com.pmm.budgetcalculator.expensing.domain.expense;
 
 import com.pmm.budgetcalculator.foundation.BaseEntity;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+
+@Entity
+
 public class Expense extends BaseEntity {
-    private String expenseName;
-    private String expenseDescription;
-    private LocalDateTime expenseTime;
-    private double expenseAmount; //or BigDecimal
-    private String expensePlace;
-    private long expenseId;
+    long expenseId;
+    String expenseName;
+    String expenseDescription;
+    LocalDateTime expenseTime;
+    double expenseAmount; //or BigDecimal
+    String expensePlace;
+
 
     public Expense() {
         this.expenseTime = LocalDateTime.now();

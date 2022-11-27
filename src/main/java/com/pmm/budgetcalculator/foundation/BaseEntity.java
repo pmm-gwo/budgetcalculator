@@ -5,7 +5,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
-
 @MappedSuperclass // sygnal dla Spring i JPA aby atrybuty klasy zmapowac jako atrybuty encji
 public abstract class BaseEntity {
 
