@@ -6,32 +6,36 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Objects;
-
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/expenses")
+@RequestMapping
 public class ExpenseController {
     private final ExpenseService expenseService;
 
-//    @Autowired
-//    ExpenseService expenseService;
-//
-//    @Autowired
-//    ExpenseRepository expenseRepository;
+//    @GetMapping
+//    public ResponseEntity<List<Expense>> getAllExpenses(
+//            @RequestParam(value = "Id", required = false) Long id) {
+//        if (Objects.nonNull(Id)) {
+//            return ResponseEntity.ok(expenseService.getAllById(id));
+//        }
+//        return ResponseEntity.ok(expenseService.getAllExpenses());
+//    }
 
-    @GetMapping
-    public ResponseEntity<List<Expense>> getAllExpenses(
-            @RequestParam(value = "branchId", required = false) Long expenseId) {
-        if (Objects.nonNull(expenseId)) {
-            return ResponseEntity.ok(expenseService.getAllByExpenseId(expenseId));
-        }
-        return ResponseEntity.ok(expenseService.getAllExpenses());
+    @GetMapping("/expenses/{id}")
+    public ResponseEntity<Expense> getOneExpense(
+            @PathVariable("id") Long id) {
+        return ResponseEntity.ok(expenseService.getExpenseById(id));
     }
-    @PostMapping
+
+    @PostMapping("/expenses")
     public ResponseEntity<Expense> createExpense(@RequestBody Expense expense) {
         return ResponseEntity.ok(expenseService.createExpense(expense));
+    }
+
+    @DeleteMapping("/expenses/{id}")
+    public void removeExpense(
+            @PathVariable("id") Long id) {
+        expenseService.removeExpenseById(id);
     }
 
 }

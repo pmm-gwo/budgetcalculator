@@ -2,31 +2,31 @@ package com.pmm.budgetcalculator.foundation;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NonNull;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import javax.persistence.*;
+import java.util.Date;
 
 @MappedSuperclass // sygnal dla Spring i JPA aby atrybuty klasy zmapowac jako atrybuty encji
 @Data
 @EqualsAndHashCode(of = "id")
-public abstract class BaseEntity {
+@EntityListeners(AuditingEntityListener.class)
 
+public abstract class BaseEntity {
+    @NonNull
     @Id
     @GeneratedValue
     protected Long id;
 
     @Version
     protected int version;
+
+    @CreatedDate
+    @Column(name = "registration_time")
+    protected Date registrationTime = new Date();
+
+    protected BaseEntity() {
+    }
 }
-
-
-
-//Fabryka - tworzy w pamiei programu nowy agregat
-//Agregat = encja+wartos
-//Repozytorium - zapis agregatu w  bazie danych/ msc do przechowyania danych i do odczytywania danych z tamtego miejsca
-//Modul - yizolowany fragment dziedizny zwiazany z agregatem, agtegat+wszystkie elementy z nim zwiazane
-//Controller - jednoczesnie jest punktem wejscia do aplikacji poniewaz udostepnia w naszej aplikacji uslugi sieciowe
-
-
