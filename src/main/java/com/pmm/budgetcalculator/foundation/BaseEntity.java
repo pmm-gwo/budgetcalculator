@@ -17,7 +17,7 @@ import java.util.Date;
 public abstract class BaseEntity {
     @NonNull
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Version

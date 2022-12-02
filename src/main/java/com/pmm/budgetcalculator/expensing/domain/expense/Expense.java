@@ -5,9 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import java.math.BigDecimal;
+import java.util.Date;
 
 
 @Entity
@@ -20,12 +22,10 @@ public class Expense extends BaseEntity {
 
     private String expenseName;
     private String expenseDescription;
-    private String expenseTime;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private Date expenseTime;
     private BigDecimal expenseAmount;
     private String expensePlace;
 
-    public Expense(String expenseTime) {
-        this.expenseTime = "dd-MM-yyyy";
-    }
 
 }
