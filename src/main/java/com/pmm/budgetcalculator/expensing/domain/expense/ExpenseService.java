@@ -16,7 +16,9 @@ public class ExpenseService {
     }
 
     public Expense getExpenseById(Long id) {
-        return expenseRepository.findById(id).orElseThrow(() -> new RuntimeException("Expense not found for Id:" + id));
+        return expenseRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Expense not found for Id:" + id));
     }
 
     public Expense createExpense(Expense expense) {

@@ -29,7 +29,7 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseService.createExpense(expense));
     }
 
-    @DeleteMapping("/expenses/{id}")
+    @DeleteMapping("/{id}")
     public void removeExpense(@PathVariable("id") Long id) {
         expenseService.removeExpenseById(id);
     }
