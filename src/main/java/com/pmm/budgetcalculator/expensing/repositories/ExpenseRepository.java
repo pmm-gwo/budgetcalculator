@@ -1,4 +1,4 @@
-package com.pmm.budgetcalculator.expensing.domain.expense;
+package com.pmm.budgetcalculator.expensing.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

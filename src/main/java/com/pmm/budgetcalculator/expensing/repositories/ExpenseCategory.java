@@ -1,4 +1,4 @@
-package com.pmm.budgetcalculator.expensing.domain.expense;
+package com.pmm.budgetcalculator.expensing.repositories;
 
 public enum ExpenseCategory {
     GIFT_AND_DONATIONS,

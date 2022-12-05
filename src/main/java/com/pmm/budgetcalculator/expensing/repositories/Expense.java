@@ -1,6 +1,5 @@
-package com.pmm.budgetcalculator.expensing.domain.expense;
+package com.pmm.budgetcalculator.expensing.repositories;
 
-import com.pmm.budgetcalculator.foundation.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,10 +29,6 @@ public class Expense extends BaseEntity {
     private Date expenseTime;
     private BigDecimal expenseAmount;
     private String expensePlace;
-    @Enumerated(EnumType.STRING)
-    private ExpenseCategory expenseCategory;
     @OneToMany
     private List<ExpenseType> expenseTypeList;
-
-
 }

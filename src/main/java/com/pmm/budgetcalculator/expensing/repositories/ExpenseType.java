@@ -1,12 +1,13 @@
-package com.pmm.budgetcalculator.expensing.domain.expense;
+package com.pmm.budgetcalculator.expensing.repositories;
 
-import com.pmm.budgetcalculator.foundation.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
 
 @Entity
@@ -16,7 +17,7 @@ import javax.persistence.Entity;
 @AllArgsConstructor
 public class ExpenseType extends BaseEntity {
 
-    String expenseType;
-
+    @Enumerated(EnumType.STRING)
+    ExpenseCategory expenseCategory;
 }
 
