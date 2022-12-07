@@ -6,13 +6,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -29,6 +28,19 @@ public class Expense extends BaseEntity {
     private Date expenseTime;
     private BigDecimal expenseAmount;
     private String expensePlace;
-    @OneToMany
+    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL)
     private List<ExpenseType> expenseTypeList;
+
+    @ManyToMany
+    @JoinTable(name = "expense_type",
+            joinColumns = @JoinColumn(name = "expense_id", referencedColumnName = "type_id"))
+    private Set<ExpenseType> expenseTypes = new LinkedHashSet<>();
+
+    public Set<ExpenseType> getExpenseTypes() {
+        return expenseTypes;
+    }
+
+    public void setExpenseTypes(Set<ExpenseType> expenseTypes) {
+        this.expenseTypes = expenseTypes;
+    }
 }
