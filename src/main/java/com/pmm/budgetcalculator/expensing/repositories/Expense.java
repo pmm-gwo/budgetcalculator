@@ -31,16 +31,4 @@ public class Expense extends BaseEntity {
     @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL)
     private List<ExpenseType> expenseTypeList;
 
-    @ManyToMany
-    @JoinTable(name = "expense_type",
-            joinColumns = @JoinColumn(name = "expense_id", referencedColumnName = "type_id"))
-    private Set<ExpenseType> expenseTypes = new LinkedHashSet<>();
-
-    public Set<ExpenseType> getExpenseTypes() {
-        return expenseTypes;
-    }
-
-    public void setExpenseTypes(Set<ExpenseType> expenseTypes) {
-        this.expenseTypes = expenseTypes;
-    }
 }
