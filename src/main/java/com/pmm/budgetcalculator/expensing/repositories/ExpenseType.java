@@ -20,4 +20,3 @@ public class ExpenseType extends BaseEntity {
     private Expense expense;
 
 }
-
