@@ -1,7 +1,7 @@
-package com.pmm.budgetcalculator.expensing.services;
+package com.pmm.budgetcalculator.expensing.service;
 
-import com.pmm.budgetcalculator.expensing.repositories.Expense;
-import com.pmm.budgetcalculator.expensing.repositories.ExpenseRepository;
+import com.pmm.budgetcalculator.expensing.entity.Expense;
+import com.pmm.budgetcalculator.expensing.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

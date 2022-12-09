@@ -1,7 +1,7 @@
-package com.pmm.budgetcalculator.expensing.controllers;
+package com.pmm.budgetcalculator.expensing.controller;
 
-import com.pmm.budgetcalculator.expensing.repositories.ExpenseType;
-import com.pmm.budgetcalculator.expensing.services.ExpenseTypeService;
+import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
+import com.pmm.budgetcalculator.expensing.service.ExpenseTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -35,3 +35,10 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/java/com/pmm/budgetcalculator/expensing/controller/
+
+
+gradlew
+gradlew.bat
+data
+gradle/wrapper
