@@ -26,14 +26,9 @@ public class ExpenseService {
     public Expense createExpense(Expense expense) {
         return expenseRepository.save(expense);
     }
-
-    public void removeExpenseById(Long id) {
-        expenseRepository.deleteById(id);}
-
+        public void removeExpenseById(Long id){
+            if (expenseRepository.existsById(id)) {
+                expenseRepository.deleteById(id);
+            }
+    }
 }
-
-
-
-
-
-

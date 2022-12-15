@@ -21,15 +21,15 @@ public class ExpenseTypeService {
     public ExpenseType createExpenseType(ExpenseType expenseType) {
         return expenseTypeRepository.save(expenseType);
     }
-
-    public void removeExpenseTypeById(Long id) {
-        expenseTypeRepository.deleteById(id);
-    }
+    public void removeExpenseTypeById(Long id){
+        if (expenseTypeRepository.existsById(id)) {
+            expenseTypeRepository.deleteById(id);
+        }
 
 //    public List<ExpenseType> findByCriteria(String expenseType) {
 //        if (Objects.nonNull(expenseType)) {
 //            return expenseTypeRepository.findByCriteria(expenseType);
 //        }
 //        return expenseTypeRepository.findAll();
-//    }
+    }
 }
