@@ -26,6 +26,11 @@ public class ExpenseTypeController {
         return ResponseEntity.ok(expenseTypeService.getAllExpenseTypes());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ExpenseType> getOneExpense(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(expenseTypeService.getExpenseTypeById(id));
+    }
+
     @PostMapping
     public ResponseEntity<ExpenseType> createExpenseType(@RequestBody ExpenseType expenseType) {
         return ResponseEntity.ok(expenseTypeService.createExpenseType(expenseType));

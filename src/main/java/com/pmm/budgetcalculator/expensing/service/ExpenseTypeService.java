@@ -18,6 +18,11 @@ public class ExpenseTypeService {
         return expenseTypeRepository.findAll();
     }
 
+    public ExpenseType getExpenseTypeById(Long id) {
+        return expenseTypeRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Expense not found for Id:" + id));
+    }
     public ExpenseType createExpenseType(ExpenseType expenseType) {
         return expenseTypeRepository.save(expenseType);
     }
