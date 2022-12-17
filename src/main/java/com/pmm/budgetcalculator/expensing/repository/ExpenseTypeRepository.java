@@ -10,7 +10,8 @@ public interface ExpenseTypeRepository extends JpaRepository<ExpenseType, Long> 
     List<ExpenseType>findAll();
     List<ExpenseType> findAllById(Long id);
     Optional<ExpenseType> findById(Long id);
-//    @Query(value = "select * from expenseType c where :expenseType = null or c.expenseType = expenseType")
-//    List<ExpenseType> findByCriteria(@Param("expenseType") String expenseType);
+
+//    @Query(value = "select from expenseType where :expenseType = :expenseType", nativeQuery = true)
+//    List<ExpenseType> findByExpenseType(@Param("expenseType") String expenseType);
 
 }
