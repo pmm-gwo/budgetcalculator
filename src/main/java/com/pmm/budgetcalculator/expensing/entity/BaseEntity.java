@@ -1,4 +1,4 @@
-package com.pmm.budgetcalculator.foundation;
+package com.pmm.budgetcalculator.expensing.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

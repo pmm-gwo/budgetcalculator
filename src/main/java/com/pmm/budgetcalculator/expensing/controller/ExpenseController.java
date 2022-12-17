@@ -1,8 +1,9 @@
-package com.pmm.budgetcalculator.expensing.application;
+package com.pmm.budgetcalculator.expensing.controller;
 
-import com.pmm.budgetcalculator.expensing.domain.expense.Expense;
-import com.pmm.budgetcalculator.expensing.domain.expense.ExpenseService;
+import com.pmm.budgetcalculator.expensing.entity.Expense;
+import com.pmm.budgetcalculator.expensing.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,9 +30,13 @@ public class ExpenseController {
         return ResponseEntity.ok(expenseService.createExpense(expense));
     }
 
-    @DeleteMapping("/expenses/{id}")
-    public void removeExpense(@PathVariable("id") Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Expense> removeExpenseById(@PathVariable("id") Long id) {
         expenseService.removeExpenseById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
+
+
+
