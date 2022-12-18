@@ -35,10 +35,10 @@ public class ExpenseTypeService {
         }
     }
 
-    public ResponseEntity<ExpenseType> updateExpenseType(Long id, ExpenseType expenseType) {
+    public ResponseEntity<ExpenseType> updateExpenseType(Long id, ExpenseType expenseTypeDetails) {
         if (expenseTypeRepository.existsById(id))
         {
-            final ExpenseType updateExpenseType = expenseTypeRepository.save(expenseType);
+            final ExpenseType updateExpenseType = expenseTypeRepository.save(expenseTypeDetails);
             return ResponseEntity.ok(updateExpenseType);
         }
         throw new RuntimeException("User not found on :: "+ id);

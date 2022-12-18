@@ -3,6 +3,7 @@ package com.pmm.budgetcalculator.expensing.service;
 import com.pmm.budgetcalculator.expensing.entity.Expense;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,5 +32,13 @@ public class ExpenseService {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
         }
+    }
+    public ResponseEntity<Expense> updateExpense(Long id, Expense expenseDetails) {
+        if (expenseRepository.existsById(id))
+        {
+            final Expense updateExpense = expenseRepository.save(expenseDetails);
+            return ResponseEntity.ok(updateExpense);
+        }
+        throw new RuntimeException("User not found on :: "+ id);
     }
 }

@@ -38,8 +38,13 @@ public class ExpenseTypeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<ExpenseType> updateExpenseType(@PathVariable("id") Long id, @RequestBody ExpenseType expenseType) {
-        return expenseTypeService.updateExpenseType(id,expenseType);
+    public ResponseEntity<ExpenseType> updateExpenseType(@PathVariable("id") Long id, @RequestBody ExpenseType expenseTypeDetails) {
+        ExpenseType updateExpenseType = expenseTypeService.getExpenseTypeById(id);
+        updateExpenseType.setExpenseTypeName(expenseTypeDetails.getExpenseTypeName());
+        updateExpenseType.setExpense(expenseTypeDetails.getExpense());
+        expenseTypeService.createExpenseType(updateExpenseType);
+        return ResponseEntity.ok(updateExpenseType);
+
     }
 
 //    @GetMapping("/{expenseType}")

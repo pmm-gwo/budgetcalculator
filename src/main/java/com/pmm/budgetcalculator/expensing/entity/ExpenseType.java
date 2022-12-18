@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 public class ExpenseType extends BaseEntity {
 
-    private String expenseType;
+    private String expenseTypeName;
     @ManyToOne(fetch = FetchType.EAGER)
     private Expense expense;
 
