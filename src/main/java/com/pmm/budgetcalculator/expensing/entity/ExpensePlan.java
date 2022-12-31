@@ -1,5 +1,6 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,7 +23,7 @@ public class ExpensePlan extends BaseEntity {
     @NonNull
     @DateTimeFormat(pattern = "MM")
     private Date expensePlanTime;
-    @NonNull
+    @NotNull
     private BigDecimal expensePlanAmount;
     @ManyToOne(fetch = FetchType.EAGER)
     @NonNull

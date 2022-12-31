@@ -2,20 +2,22 @@ package com.pmm.budgetcalculator.expensing.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
-@MappedSuperclass // sygnal dla Spring i JPA aby atrybuty klasy zmapowac jako atrybuty encji
+@MappedSuperclass
 @Data
 @EqualsAndHashCode(of = "id")
 @EntityListeners(AuditingEntityListener.class)
+@NoArgsConstructor
 
 public abstract class BaseEntity {
-    @NonNull
+    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
@@ -27,6 +29,4 @@ public abstract class BaseEntity {
     @Column(name = "registration_time")
     protected Date registrationTime = new Date();
 
-    protected BaseEntity() {
-    }
 }

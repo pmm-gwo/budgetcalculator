@@ -37,6 +37,7 @@ public class ExpenseTypeController {
         expenseTypeService.removeExpenseTypeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<ExpenseType> updateExpenseType(@PathVariable("id") Long id, @RequestBody ExpenseType expenseTypeDetails) {
         ExpenseType updateExpenseType = expenseTypeService.getExpenseTypeById(id);
@@ -47,10 +48,10 @@ public class ExpenseTypeController {
 
     }
 
-//    @GetMapping("/{expenseType}")
-//    public ResponseEntity<List<ExpenseType>> getManyExpenseTypes(
-//            @RequestParam(value = "expenseType", required = false) String expenseType) {
-//        return ResponseEntity.ok(expenseTypeService.findByCriteria(expenseType));
-//    }
+    @GetMapping("/{expenseType}")
+    public ResponseEntity<List<ExpenseType>> getManyExpenseTypes(
+            @RequestParam(value = "expenseType", required = false) String expenseType) {
+        return ResponseEntity.ok(expenseTypeService.findByCriteria(expenseType));
+    }
 }
 

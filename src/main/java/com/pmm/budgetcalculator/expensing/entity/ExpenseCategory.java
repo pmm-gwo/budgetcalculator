@@ -13,14 +13,16 @@ import java.util.List;
 
 @Entity
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true,callSuper = false)
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class ExpenseCategory extends BaseEntity{
+public class ExpenseCategory extends BaseEntity {
 
 
-    private String expenseCategory;
+    private String expenseCategoryName;
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
     private List<ExpensePlan> expensePlans;
+    @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+    private List<Expense> expenses;
 }

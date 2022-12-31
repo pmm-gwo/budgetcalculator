@@ -1,6 +1,7 @@
 package com.pmm.budgetcalculator.expensing.service;
 
 import com.pmm.budgetcalculator.expensing.entity.Expense;
+import com.pmm.budgetcalculator.expensing.exeption.ExpenseNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class ExpenseService {
     public Expense getExpenseById(Long id) {
         return expenseRepository
                 .findById(id)
-                .orElseThrow(() -> new RuntimeException("Expense not found for Id:" + id));
+                .orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
     public Expense createExpense(Expense expense) {
@@ -31,14 +32,13 @@ public class ExpenseService {
     public void removeExpenseById(Long id) {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
-        }
+        } else ResponseEntity.notFound().build();
     }
+
     public ResponseEntity<Expense> updateExpense(Long id, Expense expenseDetails) {
-        if (expenseRepository.existsById(id))
-        {
+        if (expenseRepository.existsById(id)) {
             final Expense updateExpense = expenseRepository.save(expenseDetails);
             return ResponseEntity.ok(updateExpense);
-        }
-        throw new RuntimeException("User not found on :: "+ id);
+        } else return ResponseEntity.notFound().build();
     }
 }

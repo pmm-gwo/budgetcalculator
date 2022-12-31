@@ -35,9 +35,10 @@ public class ExpenseController {
         expenseService.removeExpenseById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Expense> updateExpense(@PathVariable("id") Long id, @RequestBody Expense expenseDetails) {
-        Expense updateExpense= expenseService.getExpenseById(id);
+        Expense updateExpense = expenseService.getExpenseById(id);
         updateExpense.setExpenseAmount(expenseDetails.getExpenseAmount());
         updateExpense.setExpensePlace(expenseDetails.getExpensePlace());
         updateExpense.setExpenseTypes(expenseDetails.getExpenseTypes());
