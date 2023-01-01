@@ -11,7 +11,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 
-@Entity
+@Entity(name="category")
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @NoArgsConstructor

@@ -6,8 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import java.util.List;
 
 
 @Entity
@@ -18,7 +18,12 @@ import javax.persistence.ManyToOne;
 public class ExpenseType extends BaseEntity {
 
     private String expenseTypeName;
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Expense expense;
+    @ManyToMany(mappedBy = "expenseTypes")
+//    @JoinTable(
+//            name = "types_expenses",
+//            joinColumns = @JoinColumn(name = "expense_id"),
+//            inverseJoinColumns = @JoinColumn(name = "expenseType_id")
+//    )
+    private List<Expense> expenses;
 
 }

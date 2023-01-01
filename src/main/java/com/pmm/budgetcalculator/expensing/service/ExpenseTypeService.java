@@ -45,9 +45,9 @@ public class ExpenseTypeService {
             return ResponseEntity.notFound().build();
     }
 
-    public List<ExpenseType> findByCriteria(String expenseType) {
-        if (Objects.nonNull(expenseType)) {
-            return expenseTypeRepository.findByExpenseTypeName(expenseType);
+    public List<ExpenseType> findByCriteria(String expenseTypeName) {
+        if (Objects.nonNull(expenseTypeName)) {
+            return expenseTypeRepository.findByExpenseTypeName(expenseTypeName);
         }
         return expenseTypeRepository.findAll();
     }
