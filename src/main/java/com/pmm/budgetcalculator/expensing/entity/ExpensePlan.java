@@ -1,12 +1,17 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
 import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -18,15 +23,17 @@ import java.util.Date;
 
 public class ExpensePlan extends BaseEntity {
 
+    @NotBlank(message = "this field is mandatory")
     private String expensePlanName;
     private String expensePlanDescription;
-    @NonNull
+    @NotNull
+    @Future
     @DateTimeFormat(pattern = "MM")
     private Date expensePlanTime;
     @NotNull
     private BigDecimal expensePlanAmount;
     @ManyToOne(fetch = FetchType.EAGER)
-    @NonNull
+    @NotBlank(message = "this field is mandatory")
     private ExpenseCategory category;
 
 

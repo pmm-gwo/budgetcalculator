@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ExpenseType extends BaseEntity {
 
+    @NotBlank(message = "this field is mandatory")
     private String expenseTypeName;
     @ManyToMany(mappedBy = "expenseTypes")
 //    @JoinTable(
