@@ -15,4 +15,6 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     List<Expense> findAllById(Long id);
 
     Optional<Expense> findById(Long id);
+
+    Expense getExpenseById(Long id);
 }

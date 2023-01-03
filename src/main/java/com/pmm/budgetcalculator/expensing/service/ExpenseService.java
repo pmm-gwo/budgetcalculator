@@ -37,7 +37,14 @@ public class ExpenseService {
 
     public ResponseEntity<Expense> updateExpense(Long id, Expense expenseDetails) {
         if (expenseRepository.existsById(id)) {
-            final Expense updateExpense = expenseRepository.save(expenseDetails);
+            Expense updateExpense = expenseRepository.getExpenseById(id);
+            updateExpense.setExpenseAmount(expenseDetails.getExpenseAmount());
+            updateExpense.setExpensePlace(expenseDetails.getExpensePlace());
+            updateExpense.setExpenseTypes(expenseDetails.getExpenseTypes());
+            updateExpense.setExpenseName(expenseDetails.getExpenseName());
+            updateExpense.setExpenseDescription(expenseDetails.getExpenseDescription());
+            updateExpense.setExpenseTime(expenseDetails.getExpenseTime());
+             expenseRepository.save(expenseDetails);
             return ResponseEntity.ok(updateExpense);
         } else return ResponseEntity.notFound().build();
     }

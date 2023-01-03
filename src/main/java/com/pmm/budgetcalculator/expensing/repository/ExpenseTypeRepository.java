@@ -14,4 +14,7 @@ public interface ExpenseTypeRepository extends JpaRepository<ExpenseType, Long> 
     Optional<ExpenseType> findById(Long id);
 
     List<ExpenseType> findByExpenseTypeName(String expenseTypeName);
+
+    ExpenseType getExpenseTypeById(Long id);
+
 }

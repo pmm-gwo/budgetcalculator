@@ -1,7 +1,6 @@
 package com.pmm.budgetcalculator.expensing.service;
 
 import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
-import com.pmm.budgetcalculator.expensing.exeption.ExpenseTypeNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,9 +21,7 @@ public class ExpenseTypeService {
     }
 
     public ExpenseType getExpenseTypeById(Long id) {
-        return expenseTypeRepository
-                .findById(id)
-                .orElseThrow(() -> new ExpenseTypeNotFoundException(id));
+        return expenseTypeRepository.findById(id).orElseThrow(() -> new RuntimeException("not found"));
     }
 
     public ExpenseType createExpenseType(ExpenseType expenseType) {
@@ -39,10 +36,12 @@ public class ExpenseTypeService {
 
     public ResponseEntity<ExpenseType> updateExpenseType(Long id, ExpenseType expenseTypeDetails) {
         if (expenseTypeRepository.existsById(id)) {
-            final ExpenseType updateExpenseType = expenseTypeRepository.save(expenseTypeDetails);
+            ExpenseType updateExpenseType = expenseTypeRepository.getExpenseTypeById(id);
+            updateExpenseType.setExpenseTypeName(expenseTypeDetails.getExpenseTypeName());
+            updateExpenseType.setExpense(expenseTypeDetails.getExpense());
+            expenseTypeRepository.save(expenseTypeDetails);
             return ResponseEntity.ok(updateExpenseType);
-        } else
-            return ResponseEntity.notFound().build();
+        } else return ResponseEntity.notFound().build();
     }
 
     public List<ExpenseType> findByCriteria(String expenseTypeName) {

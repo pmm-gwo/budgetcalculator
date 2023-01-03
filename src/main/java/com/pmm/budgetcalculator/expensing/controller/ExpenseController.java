@@ -37,16 +37,9 @@ public class ExpenseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Expense> updateExpense(@PathVariable("id") Long id, @RequestBody Expense expenseDetails) {
-        Expense updateExpense = expenseService.getExpenseById(id);
-        updateExpense.setExpenseAmount(expenseDetails.getExpenseAmount());
-        updateExpense.setExpensePlace(expenseDetails.getExpensePlace());
-        updateExpense.setExpenseTypes(expenseDetails.getExpenseTypes());
-        updateExpense.setExpenseName(expenseDetails.getExpenseName());
-        updateExpense.setExpenseDescription(expenseDetails.getExpenseDescription());
-        updateExpense.setExpenseTime(expenseDetails.getExpenseTime());
-        expenseService.createExpense(updateExpense);
-        return ResponseEntity.ok(updateExpense);
+    public ResponseEntity<Expense> updateExpense(@PathVariable("id") Long id, @RequestBody Expense expenseDetails){
+     expenseService.updateExpense(id, expenseDetails);
+    return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

@@ -6,9 +6,9 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 
 @Entity
@@ -20,12 +20,12 @@ public class ExpenseType extends BaseEntity {
 
     @NotBlank(message = "this field is mandatory")
     private String expenseTypeName;
-    @ManyToMany(mappedBy = "expenseTypes")
+    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinTable(
 //            name = "types_expenses",
 //            joinColumns = @JoinColumn(name = "expense_id"),
 //            inverseJoinColumns = @JoinColumn(name = "expenseType_id")
 //    )
-    private List<Expense> expenses;
+    private Expense expense;
 
 }
