@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -17,8 +18,14 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 public class ExpenseType extends BaseEntity {
 
-    private String expenseType;
+    @NotBlank(message = "this field is mandatory")
+    private String expenseTypeName;
     @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name = "types_expenses",
+//            joinColumns = @JoinColumn(name = "expense_id"),
+//            inverseJoinColumns = @JoinColumn(name = "expenseType_id")
+//    )
     private Expense expense;
 
 }
