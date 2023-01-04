@@ -1,9 +1,9 @@
 package com.pmm.budgetcalculator.expensing.service;
 
 import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
+import com.pmm.budgetcalculator.expensing.exeption.ExpenseTypeNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseTypeRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class ExpenseTypeService {
     }
 
     public ExpenseType getExpenseTypeById(Long id) {
-        return expenseTypeRepository.findById(id).orElseThrow(() -> new RuntimeException("not found"));
+        return expenseTypeRepository.findById(id).orElseThrow(() -> new ExpenseTypeNotFoundException(id));
     }
 
     public ExpenseType createExpenseType(ExpenseType expenseType) {
@@ -31,17 +31,16 @@ public class ExpenseTypeService {
     public void removeExpenseTypeById(Long id) {
         if (expenseTypeRepository.existsById(id)) {
             expenseTypeRepository.deleteById(id);
-        } else ResponseEntity.notFound().build();
+        } else throw new ExpenseTypeNotFoundException(id);
     }
 
-    public ResponseEntity<ExpenseType> updateExpenseType(Long id, ExpenseType expenseTypeDetails) {
+    public ExpenseType updateExpenseType(Long id, ExpenseType expenseTypeDetails) {
         if (expenseTypeRepository.existsById(id)) {
             ExpenseType updateExpenseType = expenseTypeRepository.getExpenseTypeById(id);
             updateExpenseType.setExpenseTypeName(expenseTypeDetails.getExpenseTypeName());
             updateExpenseType.setExpense(expenseTypeDetails.getExpense());
-            expenseTypeRepository.save(expenseTypeDetails);
-            return ResponseEntity.ok(updateExpenseType);
-        } else return ResponseEntity.notFound().build();
+            return expenseTypeRepository.save(expenseTypeDetails);
+        } else throw new ExpenseTypeNotFoundException(id);
     }
 
     public List<ExpenseType> findByCriteria(String expenseTypeName) {

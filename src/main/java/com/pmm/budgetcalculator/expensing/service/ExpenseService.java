@@ -4,7 +4,6 @@ import com.pmm.budgetcalculator.expensing.entity.Expense;
 import com.pmm.budgetcalculator.expensing.exeption.ExpenseNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,10 +31,10 @@ public class ExpenseService {
     public void removeExpenseById(Long id) {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
-        } else ResponseEntity.notFound().build();
+        } else throw new ExpenseNotFoundException(id);
     }
 
-    public ResponseEntity<Expense> updateExpense(Long id, Expense expenseDetails) {
+    public Expense updateExpense(Long id, Expense expenseDetails) {
         if (expenseRepository.existsById(id)) {
             Expense updateExpense = expenseRepository.getExpenseById(id);
             updateExpense.setExpenseAmount(expenseDetails.getExpenseAmount());
@@ -44,8 +43,8 @@ public class ExpenseService {
             updateExpense.setExpenseName(expenseDetails.getExpenseName());
             updateExpense.setExpenseDescription(expenseDetails.getExpenseDescription());
             updateExpense.setExpenseTime(expenseDetails.getExpenseTime());
-             expenseRepository.save(expenseDetails);
-            return ResponseEntity.ok(updateExpense);
-        } else return ResponseEntity.notFound().build();
+           return  expenseRepository.save(expenseDetails);
+
+        } else throw new ExpenseNotFoundException(id);
     }
 }
