@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -24,7 +23,7 @@ import java.util.List;
 
 public class Expense extends BaseEntity {
 
-    @NotBlank(message = "this field is mandatory")
+//    @NotBlank(message = "this field is mandatory")
     private String expenseName;
     private String expenseDescription;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -36,7 +35,8 @@ public class Expense extends BaseEntity {
     @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpenseType> expenseTypes;
     //    @NotNull(message = "this field is mandatory")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
+    @JoinColumn(name="expense_category_id")
     private ExpenseCategory expenseCategory;
 
 }
