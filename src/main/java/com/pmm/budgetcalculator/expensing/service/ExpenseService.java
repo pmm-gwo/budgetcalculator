@@ -19,14 +19,13 @@ public class ExpenseService {
     }
 
     public Expense getExpenseById(Long id) {
-        return expenseRepository
-                .findById(id)
-                .orElseThrow(() -> new ExpenseNotFoundException(id));
+        return expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
     public Expense createExpense(Expense expense) {
         return expenseRepository.save(expense);
     }
+
 
     public void removeExpenseById(Long id) {
         if (expenseRepository.existsById(id)) {
@@ -43,8 +42,8 @@ public class ExpenseService {
             updateExpense.setExpenseName(expenseDetails.getExpenseName());
             updateExpense.setExpenseDescription(expenseDetails.getExpenseDescription());
             updateExpense.setExpenseTime(expenseDetails.getExpenseTime());
-           return  expenseRepository.save(expenseDetails);
-
+            updateExpense.setExpenseCategory(expenseDetails.getExpenseCategory());
+            return expenseRepository.save(expenseDetails);
         } else throw new ExpenseNotFoundException(id);
     }
 }

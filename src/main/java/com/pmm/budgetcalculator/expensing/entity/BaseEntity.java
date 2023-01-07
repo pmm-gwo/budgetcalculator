@@ -7,7 +7,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @MappedSuperclass
@@ -17,7 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 
 public abstract class BaseEntity {
-    @NotNull
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

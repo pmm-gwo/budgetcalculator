@@ -21,7 +21,7 @@ public class ExpenseTypeController {
         return ResponseEntity.ok(expenseTypeService.getAllExpenseTypes());
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<ExpenseType> getOneExpenseType(@PathVariable("id") Long id) {
         return ResponseEntity.ok(expenseTypeService.getExpenseTypeById(id));
     }
@@ -44,7 +44,7 @@ public class ExpenseTypeController {
 
     }
 
-    @GetMapping(value = "/{name}")
+    @GetMapping("/name")
     public ResponseEntity<List<ExpenseType>> getManyExpenseTypes(
             @RequestParam(value = "expenseTypeName", required = false) String expenseTypeName) {
         return ResponseEntity.ok(expenseTypeService.findByCriteria(expenseTypeName));

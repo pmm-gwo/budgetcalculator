@@ -1,6 +1,6 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
-import com.sun.istack.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -30,12 +31,12 @@ public class Expense extends BaseEntity {
     private Date expenseTime;
     @NotNull
     private BigDecimal expenseAmount;
-    @Size(min = 1, max = 30, message = "About Me must be between 1 and 30 characters")
+    @Size(min = 1, max = 30, message = "Must be between 1 and 30 characters")
     private String expensePlace;
-    @OneToMany(mappedBy = "expense", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpenseType> expenseTypes;
-    @NotBlank(message = "this field is mandatory")
+    //    @NotNull(message = "this field is mandatory")
     @ManyToOne(fetch = FetchType.EAGER)
-    private ExpenseCategory category;
+    private ExpenseCategory expenseCategory;
 
 }

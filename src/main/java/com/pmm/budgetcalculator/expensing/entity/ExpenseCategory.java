@@ -1,6 +1,5 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,19 +12,18 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 
-@Entity(name="category")
+@Entity
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
 
 public class ExpenseCategory extends BaseEntity {
 
-    @NotNull
     @NotBlank(message = "this field is mandatory")
     private String expenseCategoryName;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpensePlan> expensePlans;
-    @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "expenseCategory", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Expense> expenses;
 }
