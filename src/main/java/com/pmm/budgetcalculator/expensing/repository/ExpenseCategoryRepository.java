@@ -15,5 +15,4 @@ public interface ExpenseCategoryRepository extends JpaRepository<ExpenseCategory
 
     ExpenseCategory getExpenseCategoryById(Long id);
 
-    ExpenseCategory save(ExpenseCategory id);
 }

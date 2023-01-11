@@ -10,6 +10,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 
 @Entity
@@ -19,7 +20,7 @@ import javax.persistence.ManyToOne;
 @AllArgsConstructor
 public class ExpenseType extends BaseEntity {
 
-//    @NotBlank(message = "this field is mandatory")
+    @NotBlank(message = "this field is mandatory")
     private String expenseTypeName;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JsonBackReference

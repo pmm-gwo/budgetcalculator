@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class ExpenseCategory extends BaseEntity {
 
-//    @NotBlank(message = "this field is mandatory")
+    @NotBlank(message = "this field is mandatory")
     private String expenseCategoryName;
     @OneToMany(mappedBy = "category", cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JsonManagedReference
