@@ -1,5 +1,6 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,6 +35,7 @@ public class ExpensePlan extends BaseEntity {
     private BigDecimal expensePlanAmount;
     @ManyToOne(fetch = FetchType.EAGER)
     @NotBlank(message = "this field is mandatory")
+    @JsonBackReference
     private ExpenseCategory category;
 
 

@@ -1,6 +1,8 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -32,11 +34,11 @@ public class Expense extends BaseEntity {
     private BigDecimal expenseAmount;
     @Size(min = 1, max = 30, message = "Must be between 1 and 30 characters")
     private String expensePlace;
-    @OneToMany(mappedBy = "expense", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "expense", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @JsonManagedReference
     private List<ExpenseType> expenseTypes;
     //    @NotNull(message = "this field is mandatory")
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST )
-    @JoinColumn(name="expense_category_id")
+    @JsonBackReference
     private ExpenseCategory expenseCategory;
-
 }
