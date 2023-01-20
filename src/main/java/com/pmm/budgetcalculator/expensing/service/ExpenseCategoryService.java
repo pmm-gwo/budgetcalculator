@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -30,6 +31,13 @@ public class ExpenseCategoryService {
             expenseCategoryRepository.deleteById(id);
         } else throw new ExpenseCategoryNotFoundException(id);
     }
+    public List<ExpenseCategory> findByCriteria(String expenseCategoryName) {
+        if (Objects.nonNull(expenseCategoryName)) {
+            return expenseCategoryRepository.findByExpenseCategoryName(expenseCategoryName);
+        }
+        return expenseCategoryRepository.findAll();
+    }
+
 
     public ExpenseCategory updateExpenseCategory(Long id, ExpenseCategory expenseCategoryDetails) {
         if (expenseCategoryRepository.existsById(id)) {
