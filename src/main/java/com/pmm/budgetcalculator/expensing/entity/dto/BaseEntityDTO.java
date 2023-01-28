@@ -2,13 +2,11 @@ package com.pmm.budgetcalculator.expensing.entity.dto;
 
 import lombok.Data;
 
-import java.util.Date;
+import javax.persistence.Id;
 @Data
-
 public class BaseEntityDTO {
+    @Id
     protected Long id;
-    protected int version;
-    protected Date registrationTime = new Date();
 }
 
 

@@ -1,6 +1,7 @@
 package com.pmm.budgetcalculator.expensing.controller;
 
 import com.pmm.budgetcalculator.expensing.entity.Expense;
+import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseDTO;
 import com.pmm.budgetcalculator.expensing.service.ExpenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,7 @@ public class ExpenseController {
     private final ExpenseService expenseService;
 
     @GetMapping
-    public ResponseEntity<List<Expense>> getAllExpenses() {
+    public ResponseEntity<List<ExpenseDTO>> getAllExpenses() {
         return ResponseEntity.ok(expenseService.getAllExpenses());
     }
 
