@@ -1,34 +1,26 @@
 package com.pmm.budgetcalculator.expensing.service;
 
 import com.pmm.budgetcalculator.expensing.entity.Expense;
-import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseDTO;
+import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseDto;
+import com.pmm.budgetcalculator.expensing.entity.mapper.ExpenseMapper;
 import com.pmm.budgetcalculator.expensing.exeption.ExpenseNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ExpenseService {
 
     private final ExpenseRepository expenseRepository;
+    private final ExpenseMapper expenseMapper;
 
-
-    public List<ExpenseDTO> getAllExpenses() {
-        return expenseRepository.findAll().
-                stream().
-                map(this::mapToDto).
-                collect(Collectors.toList());
-    }
-    private ExpenseDTO mapToDto(Expense expense) {
-        return ExpenseDTO.builder().
-                expenseName(expense.getExpenseName()).
-                expenseAmount(expense.getExpenseAmount()).
-                expensePlace(expense.getExpensePlace()).expenseTime(expense.getExpenseTime()).
-                build();
+    public List<ExpenseDto> getAllExpenses() {
+        List<Expense> expenseList = expenseRepository.findAll();
+        List<ExpenseDto> expenseDtoList = expenseMapper.entityListToDtoList(expenseList);
+        return expenseDtoList;
     }
 
     public Expense getExpenseById(Long id) {

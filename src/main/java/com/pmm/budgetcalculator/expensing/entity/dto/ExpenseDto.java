@@ -12,7 +12,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExpenseDTO {
+public class ExpenseDto {
     // ExpenseDetails = 'expenseName' + 'expensePlace'
     public String expenseName;
     public String expensePlace;

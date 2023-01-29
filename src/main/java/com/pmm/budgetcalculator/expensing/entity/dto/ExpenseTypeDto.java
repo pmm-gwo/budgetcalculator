@@ -3,6 +3,6 @@ package com.pmm.budgetcalculator.expensing.entity.dto;
 import lombok.Data;
 
 @Data
-public class ExpenseTypeDTO {
+public class ExpenseTypeDto {
     private String expenseTypeName;
 }
