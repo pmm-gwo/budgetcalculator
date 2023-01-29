@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,9 +19,7 @@ public class ExpenseService {
     private final ExpenseMapper expenseMapper;
 
     public List<ExpenseDto> getAllExpenses() {
-        List<Expense> expenseList = expenseRepository.findAll();
-        List<ExpenseDto> expenseDtoList = expenseMapper.entityListToDtoList(expenseList);
-        return expenseDtoList;
+       return expenseRepository.findAll().stream().map(expense -> expenseMapper.entityToDto(expense)).collect(Collectors.toList());
     }
 
     public Expense getExpenseById(Long id) {

@@ -11,6 +11,8 @@ public interface ExpenseCategoryMapper  {
 
     ExpenseCategory dtoToEntity(ExpenseCategoryDto expenseCategoryDto);
 
+    ExpenseCategoryDto entityToDto(ExpenseCategory expenseCategory);
+
     ExpenseCategoryDto entityToDto(Expense expense);
 
     List<ExpenseCategoryDto> entityListToDtoList(List<ExpenseCategory> expenseCategoryList);
