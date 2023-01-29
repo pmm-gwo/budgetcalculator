@@ -1,6 +1,8 @@
 package com.pmm.budgetcalculator.expensing.service;
 
 import com.pmm.budgetcalculator.expensing.entity.ExpenseCategory;
+import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseCategoryDto;
+import com.pmm.budgetcalculator.expensing.entity.mapper.ExpenseCategoryMapper;
 import com.pmm.budgetcalculator.expensing.exeption.ExpenseCategoryNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseCategoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +15,12 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ExpenseCategoryService {
     private final ExpenseCategoryRepository expenseCategoryRepository;
+    private final ExpenseCategoryMapper expenseCategoryMapper;
 
-    public List<ExpenseCategory> getAllExpenseCategories() {
-        return expenseCategoryRepository.findAll();
+    public List<ExpenseCategoryDto> getAllExpenseCategories() {
+        List<ExpenseCategory> expenseCategoryList=expenseCategoryRepository.findAll();
+        List<ExpenseCategoryDto> expenseCategoryDtoList = expenseCategoryMapper.entityListToDtoList(expenseCategoryList);
+        return expenseCategoryDtoList;
     }
 
     public ExpenseCategory getExpenseCategoryById(Long id) {

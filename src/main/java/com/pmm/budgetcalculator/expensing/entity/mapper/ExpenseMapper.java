@@ -13,7 +13,6 @@ public interface ExpenseMapper {
 
     ExpenseDto entityToDto(Expense expense);
 
-
     List<ExpenseDto> entityListToDtoList(List<Expense> expenseList);
 
     List<Expense> dtoListToEntityList(List<ExpenseDto> expenseDtoList);

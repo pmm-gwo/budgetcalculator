@@ -1,6 +1,8 @@
 package com.pmm.budgetcalculator.expensing.service;
 
 import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
+import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseTypeDto;
+import com.pmm.budgetcalculator.expensing.entity.mapper.ExpenseTypeMapper;
 import com.pmm.budgetcalculator.expensing.exeption.ExpenseTypeNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseTypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +17,12 @@ public class ExpenseTypeService {
 
 
     private final ExpenseTypeRepository expenseTypeRepository;
+    private final ExpenseTypeMapper expenseTypeMapper;
 
-    public List<ExpenseType> getAllExpenseTypes() {
-        return expenseTypeRepository.findAll();
+    public List<ExpenseTypeDto> getAllExpenseTypes() {
+        List<ExpenseType> expenseTypeList = expenseTypeRepository.findAll();
+        List<ExpenseTypeDto> expenseTypeDtoList = expenseTypeMapper.entityListToDtoList(expenseTypeList);
+        return expenseTypeDtoList;
     }
 
     public ExpenseType getExpenseTypeById(Long id) {

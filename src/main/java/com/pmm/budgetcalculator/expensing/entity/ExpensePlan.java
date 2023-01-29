@@ -38,5 +38,4 @@ public class ExpensePlan extends BaseEntity {
     @JsonBackReference
     private ExpenseCategory category;
 
-
 }
