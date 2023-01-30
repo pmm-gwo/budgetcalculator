@@ -19,7 +19,10 @@ public class ExpenseService {
     private final ExpenseMapper expenseMapper;
 
     public List<ExpenseDto> getAllExpenses() {
-       return expenseRepository.findAll().stream().map(expense -> expenseMapper.entityToDto(expense)).collect(Collectors.toList());
+        return expenseRepository.
+                findAll().
+                stream().map(expense -> expenseMapper.entityToDto(expense)).
+                collect(Collectors.toList());
     }
 
     public Expense getExpenseById(Long id) {

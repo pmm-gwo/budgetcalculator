@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,10 +19,13 @@ public class ExpenseCategoryService {
     private final ExpenseCategoryMapper expenseCategoryMapper;
 
     public List<ExpenseCategoryDto> getAllExpenseCategories() {
-        List<ExpenseCategory> expenseCategoryList=expenseCategoryRepository.findAll();
-        List<ExpenseCategoryDto> expenseCategoryDtoList = expenseCategoryMapper.entityListToDtoList(expenseCategoryList);
-        return expenseCategoryDtoList;
+
+        return expenseCategoryRepository.findAll().
+                stream().
+                map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory)).
+                collect(Collectors.toList());
     }
+
 
     public ExpenseCategory getExpenseCategoryById(Long id) {
         return expenseCategoryRepository.findById(id).orElseThrow(() -> new ExpenseCategoryNotFoundException(id));
