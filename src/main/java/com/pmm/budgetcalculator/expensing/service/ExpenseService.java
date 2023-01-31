@@ -21,12 +21,13 @@ public class ExpenseService {
     public List<ExpenseDto> getAllExpenses() {
         return expenseRepository.
                 findAll().
-                stream().map(expense -> expenseMapper.entityToDto(expense)).
-                collect(Collectors.toList());
+                stream().map(expense -> expenseMapper.entityToDto(expense)).collect(Collectors.toList());
     }
 
-    public Expense getExpenseById(Long id) {
-        return expenseRepository.findById(id).orElseThrow(() -> new ExpenseNotFoundException(id));
+    public ExpenseDto getExpenseById(Long id) {
+        return expenseRepository.findById(id).
+                map(expense -> expenseMapper.entityToDto(expense))
+                .orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
     public Expense createExpense(Expense expense) {

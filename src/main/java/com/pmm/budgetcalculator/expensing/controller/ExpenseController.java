@@ -22,7 +22,7 @@ public class ExpenseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Expense> getOneExpense(@PathVariable("id") Long id) {
+    public ResponseEntity<ExpenseDto> getOneExpense(@PathVariable("id") Long id) {
         return ResponseEntity.ok(expenseService.getExpenseById(id));
     }
 

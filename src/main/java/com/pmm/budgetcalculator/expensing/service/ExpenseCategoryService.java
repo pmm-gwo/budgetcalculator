@@ -26,9 +26,10 @@ public class ExpenseCategoryService {
                 collect(Collectors.toList());
     }
 
-
-    public ExpenseCategory getExpenseCategoryById(Long id) {
-        return expenseCategoryRepository.findById(id).orElseThrow(() -> new ExpenseCategoryNotFoundException(id));
+    public ExpenseCategoryDto getExpenseCategoryById(Long id) {
+        return expenseCategoryRepository.findById(id).
+                map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory))
+                .orElseThrow(() -> new ExpenseCategoryNotFoundException(id));
     }
 
     public ExpenseCategory createExpenseCategory(ExpenseCategory expenseCategory) {

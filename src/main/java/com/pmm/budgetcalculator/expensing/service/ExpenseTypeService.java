@@ -28,8 +28,10 @@ public class ExpenseTypeService {
                 collect(Collectors.toList());
     }
 
-    public ExpenseType getExpenseTypeById(Long id) {
-        return expenseTypeRepository.findById(id).orElseThrow(() -> new ExpenseTypeNotFoundException(id));
+    public ExpenseTypeDto getExpenseTypeById(Long id) {
+        return expenseTypeRepository.findById(id).
+                map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).
+                orElseThrow(() -> new ExpenseTypeNotFoundException(id));
     }
 
     public ExpenseType createExpenseType(ExpenseType expenseType) {
@@ -57,6 +59,5 @@ public class ExpenseTypeService {
         }
         return expenseTypeRepository.findAll();
     }
-
 }
 
