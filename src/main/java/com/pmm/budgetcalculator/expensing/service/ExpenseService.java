@@ -30,8 +30,11 @@ public class ExpenseService {
                 .orElseThrow(() -> new ExpenseNotFoundException(id));
     }
 
-    public Expense createExpense(Expense expense) {
-        return expenseRepository.save(expense);
+    public Expense createExpense(ExpenseDto expenseDto) {
+        Expense expense = expenseMapper.dtoToEntity(expenseDto);
+        Expense savedExpense = expenseRepository.save(expense);
+        ExpenseDto dto = expenseMapper.entityToDto(savedExpense);
+        return expenseRepository.save(savedExpense);
     }
 
     public void removeExpenseById(Long id) {

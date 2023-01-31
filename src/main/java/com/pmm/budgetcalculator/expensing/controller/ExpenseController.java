@@ -27,8 +27,8 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> createExpense(@RequestBody Expense expense) {
-        return ResponseEntity.ok(expenseService.createExpense(expense));
+    public ResponseEntity<Expense> createExpense(@RequestBody ExpenseDto expenseDto) {
+        return ResponseEntity.ok(expenseService.createExpense(expenseDto));
     }
 
     @DeleteMapping("/{id}")
