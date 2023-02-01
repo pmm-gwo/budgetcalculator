@@ -34,7 +34,9 @@ public class ExpenseTypeService {
                 orElseThrow(() -> new ExpenseTypeNotFoundException(id));
     }
 
-    public ExpenseType createExpenseType(ExpenseType expenseType) {
+    public ExpenseType createExpenseType(ExpenseTypeDto expenseTypeDto) {
+        ExpenseType expenseType = expenseTypeMapper.dtoToEntity(expenseTypeDto);
+        ExpenseType savedExpenseType = expenseTypeRepository.save(expenseType);
         return expenseTypeRepository.save(expenseType);
     }
 

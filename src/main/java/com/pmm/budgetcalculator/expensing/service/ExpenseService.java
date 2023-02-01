@@ -34,7 +34,7 @@ public class ExpenseService {
         Expense expense = expenseMapper.dtoToEntity(expenseDto);
         Expense savedExpense = expenseRepository.save(expense);
         ExpenseDto dto = expenseMapper.entityToDto(savedExpense);
-        return expenseRepository.save(savedExpense);
+        return expenseRepository.save(expense);
     }
 
     public void removeExpenseById(Long id) {

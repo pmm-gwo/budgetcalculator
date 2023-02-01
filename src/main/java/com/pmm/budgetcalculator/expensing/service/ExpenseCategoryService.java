@@ -32,7 +32,10 @@ public class ExpenseCategoryService {
                 .orElseThrow(() -> new ExpenseCategoryNotFoundException(id));
     }
 
-    public ExpenseCategory createExpenseCategory(ExpenseCategory expenseCategory) {
+    public ExpenseCategory createExpenseCategory(ExpenseCategoryDto expenseCategoryDto) {
+        ExpenseCategory expenseCategory = expenseCategoryMapper.dtoToEntity(expenseCategoryDto);
+        ExpenseCategory savedExpenseCategory = expenseCategoryRepository.save(expenseCategory);
+        ExpenseCategoryDto dto = expenseCategoryMapper.entityToDto(savedExpenseCategory);
         return expenseCategoryRepository.save(expenseCategory);
     }
 
