@@ -51,7 +51,6 @@ public class ExpenseCategoryService {
         return expenseCategoryRepository.findAll();
     }
 
-
     public ExpenseCategory updateExpenseCategory(Long id, ExpenseCategory expenseCategoryDetails) {
         if (expenseCategoryRepository.existsById(id)) {
             ExpenseCategory updateExpenseCategory = expenseCategoryRepository.getExpenseCategoryById(id);

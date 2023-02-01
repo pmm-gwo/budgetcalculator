@@ -43,17 +43,17 @@ public class ExpenseService {
         } else throw new ExpenseNotFoundException(id);
     }
 
-    public Expense updateExpense(Long id, Expense expenseDetails) {
+    public Expense updateExpense(Long id, ExpenseDto expenseDetailsDto) {
         if (expenseRepository.existsById(id)) {
+            Expense expense = expenseMapper.dtoToEntity(expenseDetailsDto);
             Expense updateExpense = expenseRepository.getExpenseById(id);
-            updateExpense.setExpenseAmount(expenseDetails.getExpenseAmount());
-            updateExpense.setExpensePlace(expenseDetails.getExpensePlace());
-            updateExpense.setExpenseTypes(expenseDetails.getExpenseTypes());
-            updateExpense.setExpenseName(expenseDetails.getExpenseName());
-            updateExpense.setExpenseDescription(expenseDetails.getExpenseDescription());
-            updateExpense.setExpenseTime(expenseDetails.getExpenseTime());
-            updateExpense.setExpenseCategory(expenseDetails.getExpenseCategory());
-            return expenseRepository.save(expenseDetails);
+            updateExpense.setExpenseAmount(expenseDetailsDto.getExpenseAmount());
+            updateExpense.setExpensePlace(expenseDetailsDto.getExpensePlace());
+            updateExpense.setExpenseName(expenseDetailsDto.getExpenseName());
+            updateExpense.setExpenseDescription(expenseDetailsDto.getExpenseDescription());
+            updateExpense.setExpenseTime(expenseDetailsDto.getExpenseTime());
+            ExpenseDto expenseDetails = expenseMapper.entityToDto(expense);
+            return expenseRepository.save(expense);
         } else throw new ExpenseNotFoundException(id);
     }
 }

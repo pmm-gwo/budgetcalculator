@@ -40,8 +40,8 @@ public class ExpenseTypeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExpenseType> updateExpenseType(@PathVariable("id") Long id, @RequestBody ExpenseType expenseTypeDetails) {
-        return ResponseEntity.ok(expenseTypeService.updateExpenseType(id, expenseTypeDetails));
+    public ResponseEntity<ExpenseType> updateExpenseType(@PathVariable("id") Long id, @RequestBody ExpenseTypeDto expenseTypeDetailsDto) {
+        return ResponseEntity.ok(expenseTypeService.updateExpenseType(id, expenseTypeDetailsDto));
 
     }
 
