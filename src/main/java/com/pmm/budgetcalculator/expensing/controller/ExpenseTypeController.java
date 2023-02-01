@@ -46,7 +46,7 @@ public class ExpenseTypeController {
     }
 
     @GetMapping("/name")
-    public ResponseEntity<List<ExpenseType>> getManyExpenseTypes(
+    public ResponseEntity<List<ExpenseTypeDto>> getManyExpenseTypes(
             @RequestParam(value = "expenseTypeName", required = false) String expenseTypeName) {
         return ResponseEntity.ok(expenseTypeService.findByCriteria(expenseTypeName));
     }

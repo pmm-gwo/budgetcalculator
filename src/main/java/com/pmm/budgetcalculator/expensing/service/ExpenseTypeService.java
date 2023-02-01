@@ -55,11 +55,11 @@ public class ExpenseTypeService {
         } else throw new ExpenseTypeNotFoundException(id);
     }
 
-    public List<ExpenseType> findByCriteria(String expenseTypeName) {
+    public List<ExpenseTypeDto> findByCriteria(String expenseTypeName) {
         if (Objects.nonNull(expenseTypeName)) {
-            return expenseTypeRepository.findByExpenseTypeName(expenseTypeName);
+            return expenseTypeRepository.findByExpenseTypeName(expenseTypeName).stream().map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).collect(Collectors.toList());
         }
-        return expenseTypeRepository.findAll();
+        return expenseTypeRepository.findAll().stream().map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).collect(Collectors.toList());
     }
 }
 
