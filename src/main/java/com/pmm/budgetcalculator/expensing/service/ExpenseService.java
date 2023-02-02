@@ -42,7 +42,7 @@ public class ExpenseService {
         } else throw new ExpenseNotFoundException(id);
     }
 
-    public Expense updateExpense(Long id, ExpenseDto expenseDetailsDto) {
+    public ExpenseDto updateExpense(Long id, ExpenseDto expenseDetailsDto) {
         if (expenseRepository.existsById(id)) {
             Expense expense = expenseMapper.dtoToEntity(expenseDetailsDto);
             Expense updateExpense = expenseRepository.getExpenseById(id);
@@ -52,7 +52,7 @@ public class ExpenseService {
             updateExpense.setExpenseDescription(expenseDetailsDto.getExpenseDescription());
             updateExpense.setExpenseTime(expenseDetailsDto.getExpenseTime());
             ExpenseDto expenseDetails = expenseMapper.entityToDto(expense);
-            return expenseRepository.save(expense);
+            return expenseMapper.entityToDto(expense);
         } else throw new ExpenseNotFoundException(id);
     }
 }
