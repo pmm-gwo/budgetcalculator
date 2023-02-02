@@ -28,7 +28,7 @@ public class ExpenseTypeController {
     }
 
     @PostMapping
-    public ResponseEntity<ExpenseType> createExpenseType(@RequestBody ExpenseTypeDto expenseTypeDto) {
+    public ResponseEntity<ExpenseTypeDto> createExpenseType(@RequestBody ExpenseTypeDto expenseTypeDto) {
         return ResponseEntity.ok(expenseTypeService.createExpenseType(expenseTypeDto));
     }
 
