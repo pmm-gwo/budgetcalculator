@@ -1,21 +1,20 @@
 package com.pmm.budgetcalculator.expensing.entity.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.util.Date;
 
 @MappedSuperclass
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseEntityDto {
-    @Id
-    protected Long id;
+    public Long id;
+    public int version;
+    public Date registrationTime = new Date();
 }
 
 

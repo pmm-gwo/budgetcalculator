@@ -1,14 +1,14 @@
 package com.pmm.budgetcalculator.expensing.entity.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExpenseTypeDto extends BaseEntityDto {
-    private String expenseTypeName;
+    public String expenseTypeName;
 }

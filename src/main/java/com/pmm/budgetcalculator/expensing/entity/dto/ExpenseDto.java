@@ -1,18 +1,18 @@
 package com.pmm.budgetcalculator.expensing.entity.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ExpenseDto {
+public class ExpenseDto extends BaseEntityDto{
     // ExpenseDetails = 'expenseName' + 'expensePlace'
     public String expenseName;
     public String expensePlace;
