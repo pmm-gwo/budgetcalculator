@@ -4,7 +4,6 @@ import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
 import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseTypeDto;
 import com.pmm.budgetcalculator.expensing.service.ExpenseTypeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +35,7 @@ public class ExpenseTypeController {
     @DeleteMapping("/{id}")
     public ResponseEntity<ExpenseType> removeExpenseTypeById(@PathVariable("id") Long id) {
         expenseTypeService.removeExpenseTypeById(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return null;
     }
 
     @PutMapping("/{id}")
