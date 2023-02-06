@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,12 +41,6 @@ public class ExpenseCategoryService {
         if (expenseCategoryRepository.existsById(id)) {
             expenseCategoryRepository.deleteById(id);
         } else throw new EntityNotFoundException(id);
-    }
-    public List<ExpenseCategory> findByCriteria(String expenseCategoryName) {
-        if (Objects.nonNull(expenseCategoryName)) {
-            return expenseCategoryRepository.findByExpenseCategoryName(expenseCategoryName);
-        }
-        return expenseCategoryRepository.findAll();
     }
 
     public ExpenseCategory updateExpenseCategory(Long id, ExpenseCategoryDto expenseCategoryDetailsDto) {
