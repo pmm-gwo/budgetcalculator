@@ -3,7 +3,7 @@ package com.pmm.budgetcalculator.expensing.service;
 import com.pmm.budgetcalculator.expensing.entity.Expense;
 import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseDto;
 import com.pmm.budgetcalculator.expensing.entity.mapper.ExpenseMapper;
-import com.pmm.budgetcalculator.expensing.exeption.ExpenseNotFoundException;
+import com.pmm.budgetcalculator.expensing.exeption.EntityNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class ExpenseService {
     public ExpenseDto getExpenseById(Long id) {
         return expenseRepository.findById(id).
                 map(expense -> expenseMapper.entityToDto(expense))
-                .orElseThrow(() -> new ExpenseNotFoundException(id));
+                .orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     public ExpenseDto createExpense(ExpenseDto expenseDto) {
@@ -39,7 +39,7 @@ public class ExpenseService {
     public void removeExpenseById(Long id) {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
-        } else throw new ExpenseNotFoundException(id);
+        } else throw new EntityNotFoundException(id);
     }
 
     public ExpenseDto updateExpense(Long id, ExpenseDto expenseDetailsDto) {
@@ -53,6 +53,6 @@ public class ExpenseService {
             updateExpense.setExpenseTime(expenseDetailsDto.getExpenseTime());
             ExpenseDto expenseDetails = expenseMapper.entityToDto(expense);
             return expenseMapper.entityToDto(expense);
-        } else throw new ExpenseNotFoundException(id);
+        } else throw new EntityNotFoundException(id);
     }
 }

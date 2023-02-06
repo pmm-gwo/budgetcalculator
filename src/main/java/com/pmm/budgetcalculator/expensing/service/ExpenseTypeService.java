@@ -3,7 +3,7 @@ package com.pmm.budgetcalculator.expensing.service;
 import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
 import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseTypeDto;
 import com.pmm.budgetcalculator.expensing.entity.mapper.ExpenseTypeMapper;
-import com.pmm.budgetcalculator.expensing.exeption.ExpenseTypeNotFoundException;
+import com.pmm.budgetcalculator.expensing.exeption.EntityNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseTypeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class ExpenseTypeService {
     public ExpenseTypeDto getExpenseTypeById(Long id) {
         return expenseTypeRepository.findById(id).
                 map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).
-                orElseThrow(() -> new ExpenseTypeNotFoundException(id));
+                orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     public ExpenseTypeDto createExpenseType(ExpenseTypeDto expenseTypeDto) {
@@ -43,7 +43,7 @@ public class ExpenseTypeService {
     public void removeExpenseTypeById(Long id) {
         if (expenseTypeRepository.existsById(id)) {
             expenseTypeRepository.deleteById(id);
-        } else throw new ExpenseTypeNotFoundException(id);
+        } else throw new EntityNotFoundException(id);
     }
 
     public ExpenseTypeDto updateExpenseType(Long id, ExpenseTypeDto expenseTypeDetailsDto) {
@@ -53,7 +53,7 @@ public class ExpenseTypeService {
             updateExpenseType.setExpenseTypeName(expenseTypeDetailsDto.getExpenseTypeName());
             ExpenseTypeDto expenseTypeDetails = expenseTypeMapper.entityToDto(expenseType);
             return expenseTypeMapper.entityToDto(expenseType);
-        } else throw new ExpenseTypeNotFoundException(id);
+        } else throw new EntityNotFoundException(id);
     }
 
     public List<ExpenseTypeDto> findByCriteria(String expenseTypeName) {

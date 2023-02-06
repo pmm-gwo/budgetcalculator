@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class ExpenseTypeDto extends BaseEntityDto {
 
     public String expenseTypeName;

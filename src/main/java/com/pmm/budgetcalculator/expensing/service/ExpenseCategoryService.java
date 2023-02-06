@@ -3,7 +3,7 @@ package com.pmm.budgetcalculator.expensing.service;
 import com.pmm.budgetcalculator.expensing.entity.ExpenseCategory;
 import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseCategoryDto;
 import com.pmm.budgetcalculator.expensing.entity.mapper.ExpenseCategoryMapper;
-import com.pmm.budgetcalculator.expensing.exeption.ExpenseCategoryNotFoundException;
+import com.pmm.budgetcalculator.expensing.exeption.EntityNotFoundException;
 import com.pmm.budgetcalculator.expensing.repository.ExpenseCategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -29,7 +29,7 @@ public class ExpenseCategoryService {
     public ExpenseCategoryDto getExpenseCategoryById(Long id) {
         return expenseCategoryRepository.findById(id).
                 map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory))
-                .orElseThrow(() -> new ExpenseCategoryNotFoundException(id));
+                .orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     public ExpenseCategoryDto createExpenseCategory(ExpenseCategoryDto expenseCategoryDto) {
@@ -41,7 +41,7 @@ public class ExpenseCategoryService {
     public void removeExpenseCategoryById(Long id) {
         if (expenseCategoryRepository.existsById(id)) {
             expenseCategoryRepository.deleteById(id);
-        } else throw new ExpenseCategoryNotFoundException(id);
+        } else throw new EntityNotFoundException(id);
     }
     public List<ExpenseCategory> findByCriteria(String expenseCategoryName) {
         if (Objects.nonNull(expenseCategoryName)) {
@@ -57,6 +57,6 @@ public class ExpenseCategoryService {
             updateExpenseCategory.setExpenseCategoryName(expenseCategoryDetailsDto.getExpenseCategoryName());
             ExpenseCategoryDto expenseCategoryDetails = expenseCategoryMapper.entityToDto(expenseCategory);
             return expenseCategoryRepository.save(expenseCategory);
-        } else throw new ExpenseCategoryNotFoundException(id);
+        } else throw new EntityNotFoundException(id);
     }
 }

@@ -6,12 +6,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.persistence.EntityNotFoundException;
+
 @ControllerAdvice
-public class ExpenseNotFoundAdvice {
+public class EntityNotFoundAdvice {
     @ResponseBody
-    @ExceptionHandler(ExpenseNotFoundException.class)
+    @ExceptionHandler(EntityNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String expenseNotFoundHandler(ExpenseNotFoundException ex) {
+    public String entityNotFoundHandler(EntityNotFoundException ex) {
 
         return ex.getMessage();
     }

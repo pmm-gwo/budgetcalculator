@@ -13,6 +13,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class ExpensePlanDto extends BaseEntityDto{
 
     public String expensePlanName;

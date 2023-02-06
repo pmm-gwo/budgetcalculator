@@ -5,6 +5,7 @@ import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseCategoryDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
+
 public interface ExpenseCategoryMapper  {
 
     ExpenseCategory dtoToEntity(ExpenseCategoryDto expenseCategoryDto);
