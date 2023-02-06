@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseEntityDto {
+
     public Long id;
     public int version;
     public Date registrationTime = new Date();

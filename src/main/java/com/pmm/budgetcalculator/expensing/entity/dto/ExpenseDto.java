@@ -13,13 +13,12 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ExpenseDto extends BaseEntityDto{
-    // ExpenseDetails = 'expenseName' + 'expensePlace'
+
     public String expenseName;
     public String expensePlace;
     public String expenseDescription;
     public Date expenseTime;
     public BigDecimal expenseAmount;
-
 }
 
 

@@ -1,6 +1,5 @@
 package com.pmm.budgetcalculator.expensing.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -23,11 +22,5 @@ public class ExpenseType extends BaseEntity {
     @NotBlank(message = "this field is mandatory")
     private String expenseTypeName;
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    @JsonBackReference
     private Expense expense;
 }
-//    @JoinTable(
-//            name = "types_expenses",
-//            joinColumns = @JoinColumn(name = "expense_id"),
-//            inverseJoinColumns = @JoinColumn(name = "expenseType_id")
-//    )
