@@ -19,14 +19,17 @@ public class ExpenseService {
     private final ExpenseMapper expenseMapper;
 
     public List<ExpenseDto> getAllExpenses() {
-        return expenseRepository.
-                findAll().
-                stream().map(expense -> expenseMapper.entityToDto(expense)).collect(Collectors.toList());
+        return expenseRepository
+                .findAll()
+                .stream()
+                .map(expense -> expenseMapper.entityToDto(expense))
+                .collect(Collectors.toList());
     }
 
     public ExpenseDto getExpenseById(Long id) {
-        return expenseRepository.findById(id).
-                map(expense -> expenseMapper.entityToDto(expense))
+        return expenseRepository
+                .findById(id)
+                .map(expense -> expenseMapper.entityToDto(expense))
                 .orElseThrow(() -> new EntityNotFoundException(id));
     }
 
@@ -39,7 +42,10 @@ public class ExpenseService {
     public void removeExpenseById(Long id) {
         if (expenseRepository.existsById(id)) {
             expenseRepository.deleteById(id);
-        } else throw new EntityNotFoundException(id);
+        }
+        else {
+            throw new EntityNotFoundException(id);
+        }
     }
 
     public ExpenseDto updateExpense(Long id, ExpenseDto expenseDetailsDto) {
@@ -53,6 +59,9 @@ public class ExpenseService {
             updateExpense.setExpenseTime(expenseDetailsDto.getExpenseTime());
             ExpenseDto expenseDetails = expenseMapper.entityToDto(expense);
             return expenseMapper.entityToDto(expense);
-        } else throw new EntityNotFoundException(id);
+        }
+        else {
+            throw new EntityNotFoundException(id);
+        }
     }
 }

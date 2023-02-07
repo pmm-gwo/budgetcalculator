@@ -21,17 +21,18 @@ public class ExpenseTypeService {
     private final ExpenseTypeMapper expenseTypeMapper;
 
     public List<ExpenseTypeDto> getAllExpenseTypes() {
-        return expenseTypeRepository.
-                findAll().
-                stream().
-                map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).
-                collect(Collectors.toList());
+        return expenseTypeRepository
+                .findAll()
+                .stream()
+                .map(expenseType -> expenseTypeMapper.entityToDto(expenseType))
+                .collect(Collectors.toList());
     }
 
     public ExpenseTypeDto getExpenseTypeById(Long id) {
-        return expenseTypeRepository.findById(id).
-                map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).
-                orElseThrow(() -> new EntityNotFoundException(id));
+        return expenseTypeRepository
+                .findById(id)
+                .map(expenseType -> expenseTypeMapper.entityToDto(expenseType))
+                .orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     public ExpenseTypeDto createExpenseType(ExpenseTypeDto expenseTypeDto) {
@@ -43,7 +44,10 @@ public class ExpenseTypeService {
     public void removeExpenseTypeById(Long id) {
         if (expenseTypeRepository.existsById(id)) {
             expenseTypeRepository.deleteById(id);
-        } else throw new EntityNotFoundException(id);
+        }
+        else {
+            throw new EntityNotFoundException(id);
+        }
     }
 
     public ExpenseTypeDto updateExpenseType(Long id, ExpenseTypeDto expenseTypeDetailsDto) {
@@ -53,14 +57,21 @@ public class ExpenseTypeService {
             updateExpenseType.setExpenseTypeName(expenseTypeDetailsDto.getExpenseTypeName());
             ExpenseTypeDto expenseTypeDetails = expenseTypeMapper.entityToDto(expenseType);
             return expenseTypeMapper.entityToDto(expenseType);
-        } else throw new EntityNotFoundException(id);
+        } else {
+            throw new EntityNotFoundException(id);
+        }
     }
 
     public List<ExpenseTypeDto> findByCriteria(String expenseTypeName) {
         if (Objects.nonNull(expenseTypeName)) {
-            return expenseTypeRepository.findByExpenseTypeName(expenseTypeName).stream().map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).collect(Collectors.toList());
+            return expenseTypeRepository
+                    .findByExpenseTypeName(expenseTypeName)
+                    .stream()
+                    .map(expenseType -> expenseTypeMapper.entityToDto(expenseType))
+                    .collect(Collectors.toList());
+        } else {
+            throw new RuntimeException("ExpenseTypeName is incorrect");
         }
-        return expenseTypeRepository.findAll().stream().map(expenseType -> expenseTypeMapper.entityToDto(expenseType)).collect(Collectors.toList());
     }
 }
 

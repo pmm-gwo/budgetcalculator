@@ -19,15 +19,16 @@ public class ExpenseCategoryService {
 
     public List<ExpenseCategoryDto> getAllExpenseCategories() {
 
-        return expenseCategoryRepository.findAll().
-                stream().
-                map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory)).
-                collect(Collectors.toList());
+        return expenseCategoryRepository
+                .findAll()
+                .stream()
+                .map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory))
+                .collect(Collectors.toList());
     }
 
     public ExpenseCategoryDto getExpenseCategoryById(Long id) {
-        return expenseCategoryRepository.findById(id).
-                map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory))
+        return expenseCategoryRepository
+                .findById(id).map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory))
                 .orElseThrow(() -> new EntityNotFoundException(id));
     }
 
@@ -40,7 +41,9 @@ public class ExpenseCategoryService {
     public void removeExpenseCategoryById(Long id) {
         if (expenseCategoryRepository.existsById(id)) {
             expenseCategoryRepository.deleteById(id);
-        } else throw new EntityNotFoundException(id);
+        } else {
+            throw new EntityNotFoundException(id);
+        }
     }
 
     public ExpenseCategory updateExpenseCategory(Long id, ExpenseCategoryDto expenseCategoryDetailsDto) {
@@ -50,6 +53,8 @@ public class ExpenseCategoryService {
             updateExpenseCategory.setExpenseCategoryName(expenseCategoryDetailsDto.getExpenseCategoryName());
             ExpenseCategoryDto expenseCategoryDetails = expenseCategoryMapper.entityToDto(expenseCategory);
             return expenseCategoryRepository.save(expenseCategory);
-        } else throw new EntityNotFoundException(id);
+        } else {
+            throw new EntityNotFoundException(id);
+        }
     }
 }
