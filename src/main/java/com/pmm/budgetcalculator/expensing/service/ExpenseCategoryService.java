@@ -28,8 +28,7 @@ public class ExpenseCategoryService {
 
     public ExpenseCategoryDto getExpenseCategoryById(Long id) {
         return expenseCategoryRepository
-                .findById(id).map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory))
-                .orElseThrow(() -> new EntityNotFoundException(id));
+                .findById(id).map(expenseCategory -> expenseCategoryMapper.entityToDto(expenseCategory)).orElseThrow(() -> new EntityNotFoundException(id));
     }
 
     public ExpenseCategoryDto createExpenseCategory(ExpenseCategoryDto expenseCategoryDto) {
@@ -53,7 +52,8 @@ public class ExpenseCategoryService {
             updateExpenseCategory.setExpenseCategoryName(expenseCategoryDetailsDto.getExpenseCategoryName());
             ExpenseCategoryDto expenseCategoryDetails = expenseCategoryMapper.entityToDto(expenseCategory);
             return expenseCategoryRepository.save(expenseCategory);
-        } else {
+        }
+        else {
             throw new EntityNotFoundException(id);
         }
     }
