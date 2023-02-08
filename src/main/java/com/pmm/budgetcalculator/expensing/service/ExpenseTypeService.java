@@ -50,13 +50,13 @@ public class ExpenseTypeService {
         }
     }
 
-    public ExpenseType updateExpenseType(Long id, ExpenseTypeDto expenseTypeDetailsDto) {
+    public ExpenseTypeDto updateExpenseType(Long id, ExpenseTypeDto expenseTypeDetailsDto) {
         if (expenseTypeRepository.existsById(id)) {
             ExpenseType expenseType = expenseTypeMapper.dtoToEntity(expenseTypeDetailsDto);
             ExpenseType updateExpenseType = expenseTypeRepository.getExpenseTypeById(id);
             updateExpenseType.setExpenseTypeName(expenseTypeDetailsDto.getExpenseTypeName());
-            ExpenseTypeDto expenseTypeDetails = expenseTypeMapper.entityToDto(expenseType);
-            return expenseTypeRepository.save(expenseType);
+            ExpenseType updatedExpenseType = expenseTypeRepository.save(updateExpenseType);
+            return expenseTypeMapper.entityToDto(updatedExpenseType);
         }
         else {
             throw new EntityNotFoundException(id);
