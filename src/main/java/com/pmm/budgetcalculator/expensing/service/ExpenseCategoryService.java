@@ -45,13 +45,13 @@ public class ExpenseCategoryService {
         }
     }
 
-    public ExpenseCategory updateExpenseCategory(Long id, ExpenseCategoryDto expenseCategoryDetailsDto) {
+    public ExpenseCategoryDto updateExpenseCategory(Long id, ExpenseCategoryDto expenseCategoryDetailsDto) {
         if (expenseCategoryRepository.existsById(id)) {
             ExpenseCategory expenseCategory = expenseCategoryMapper.dtoToEntity(expenseCategoryDetailsDto);
             ExpenseCategory updateExpenseCategory = expenseCategoryRepository.getExpenseCategoryById(id);
             updateExpenseCategory.setExpenseCategoryName(expenseCategoryDetailsDto.getExpenseCategoryName());
-            ExpenseCategoryDto expenseCategoryDetails = expenseCategoryMapper.entityToDto(expenseCategory);
-            return expenseCategoryRepository.save(expenseCategory);
+            ExpenseCategory updatedExpenseCategory = expenseCategoryRepository.save(updateExpenseCategory);
+            return expenseCategoryMapper.entityToDto(updatedExpenseCategory);
         }
         else {
             throw new EntityNotFoundException(id);
