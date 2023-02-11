@@ -36,5 +36,4 @@ public class ExpensePlan extends BaseEntity {
     @NotBlank(message = "this field is mandatory")
     private ExpenseCategory category;
 
-
 }
