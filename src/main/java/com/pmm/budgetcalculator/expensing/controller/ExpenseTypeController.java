@@ -1,6 +1,5 @@
 package com.pmm.budgetcalculator.expensing.controller;
 
-import com.pmm.budgetcalculator.expensing.entity.ExpenseType;
 import com.pmm.budgetcalculator.expensing.entity.dto.ExpenseTypeDto;
 import com.pmm.budgetcalculator.expensing.service.ExpenseTypeService;
 import lombok.RequiredArgsConstructor;
@@ -33,9 +32,9 @@ public class ExpenseTypeController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<ExpenseType> removeExpenseTypeById(@PathVariable("id") Long id) {
+    public ResponseEntity<?> removeExpenseTypeById(@PathVariable("id") Long id) {
         expenseTypeService.removeExpenseTypeById(id);
-        return null;
+        return ResponseEntity.ok("Entity deleted");
     }
 
     @PutMapping("/{id}")
